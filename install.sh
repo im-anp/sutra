@@ -23,7 +23,7 @@ warn() { printf '  %s✗%s %s\n' "$RED" "$OFF" "$*"; }
 step() { printf '\n%s  %s%s\n' "$BOLD" "$*" "$OFF"; }
 
 # Piped from curl, stdin is this script, so questions read from the terminal.
-if [ -r /dev/tty ]; then TTY=/dev/tty; else TTY=/dev/stdin; fi
+if (: < /dev/tty) 2>/dev/null; then TTY=/dev/tty; else TTY=/dev/stdin; fi
 
 printf '\n  %s%ssutra%s %s— your second brain%s\n\n' "$GREEN" "$BOLD" "$OFF" "$DIM" "$OFF"
 
