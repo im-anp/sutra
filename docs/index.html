@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sutra — your second brain</title>
+<meta name="description" content="A personal second brain that runs on your own Mac. Memory in plain markdown, web, email, connectors, learning and coding agents — one OpenRouter key.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.13 0.008 160);
+    --panel: oklch(0.17 0.01 160);
+    --line: oklch(0.28 0.02 160);
+    --text: oklch(0.93 0.01 160);
+    --muted: oklch(0.68 0.02 160);
+    --signal: oklch(0.8 0.19 150);
+    --signal-dim: oklch(0.8 0.19 150 / 14%);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, system-ui, sans-serif;
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.8 0.19 150 / 10%), transparent);
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 72px 16px 48px; }
+  .mark { font: 500 13px/1 "JetBrains Mono", monospace; letter-spacing: .3em; text-transform: uppercase; color: var(--signal); display: flex; align-items: center; gap: 10px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 10px var(--signal); }
+  h1 { font-size: clamp(34px, 7vw, 52px); line-height: 1.1; margin: 20px 0 16px; font-weight: 600; letter-spacing: -.02em; }
+  h1 span { color: var(--signal); }
+  .lede { color: var(--muted); font-size: 18px; margin: 0 0 36px; max-width: 600px; }
+  .install { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .install-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); font: 12px "JetBrains Mono", monospace; color: var(--muted); }
+  .install pre { margin: 0; padding: 16px 14px; overflow-x: auto; font: 14px/1.5 "JetBrains Mono", monospace; color: var(--signal); }
+  button.copy { background: var(--signal-dim); color: var(--signal); border: 1px solid oklch(0.8 0.19 150 / 35%); border-radius: 6px; padding: 4px 10px; font: 12px "JetBrains Mono", monospace; cursor: pointer; }
+  button.copy:hover { background: oklch(0.8 0.19 150 / 24%); }
+  .needs { color: var(--muted); font-size: 14px; margin: 12px 2px 0; }
+  .needs a, footer a, .steps a { color: var(--signal); text-decoration: none; }
+  h2 { font: 500 12px "JetBrains Mono", monospace; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); margin: 56px 0 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .card b { display: block; margin-bottom: 4px; font-weight: 600; }
+  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .steps { padding-left: 20px; color: var(--muted); }
+  .steps li { margin: 6px 0; }
+  .steps code, .card code, .needs code { font: 13px "JetBrains Mono", monospace; color: var(--text); background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+  .note { border-left: 2px solid var(--signal); padding: 4px 0 4px 14px; color: var(--muted); font-size: 14px; }
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark"><span class="dot"></span>sutra</div>
+  <h1>Your second brain,<br><span>on your own Mac.</span></h1>
+  <p class="lede">Sutra remembers what you tell it, reads your documents and email, searches and reads the web, works in your tools, helps you learn things properly — and hands builds to Claude Code or Codex. Its memory is a folder of plain markdown you own.</p>
+
+  <div class="install">
+    <div class="install-head"><span>install</span><button class="copy" type="button" data-copy="cmd">copy</button></div>
+    <pre id="cmd">curl -fsSL https://raw.githubusercontent.com/im-anp/sutra/main/install.sh | bash</pre>
+  </div>
+  <p class="needs">Needs macOS on Apple Silicon, <a href="https://nodejs.org">Node 24+</a>, and an <a href="https://openrouter.ai/keys">OpenRouter key</a>. Then run <code>sutra</code>. <span id="version"></span></p>
+
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><b>Memory you own</b><p>Plain markdown in a folder — open it in Obsidian. Local search, on-device embeddings.</p></div>
+    <div class="card"><b>Web, fast</b><p>Search the web, read any page or PDF as clean markdown, crawl a docs site.</p></div>
+    <div class="card"><b>Your tools</b><p>Gmail, Calendar, Jira, Notion, Slack, GitHub — connect with a click.</p></div>
+    <div class="card"><b>Learning</b><p>Study plans from real sources, review cards, spaced repetition.</p></div>
+    <div class="card"><b>Coding agents</b><p>“Have Claude Code build X” — it runs in the background, you watch it live.</p></div>
+    <div class="card"><b>Asks first</b><p>Anything that sends, posts, buys or changes something waits for your yes.</p></div>
+  </div>
+
+  <h2>Using it</h2>
+  <ol class="steps">
+    <li><code>sutra</code> — start it; it opens in your browser at <code>localhost:3000</code></li>
+    <li><code>sutra update</code> — move to the latest version</li>
+    <li><code>sutra key</code> — replace your OpenRouter key</li>
+    <li><code>sutra doctor</code> — check the install</li>
+  </ol>
+
+  <h2>Privacy</h2>
+  <p class="note">Sutra runs entirely on your machine and only answers your machine — there is no account and no sign-in; whoever uses this computer is treated as you. Your notes, email and logins stay local. Model calls go to OpenRouter with your own key.</p>
+
+  <footer>
+    <span>Sutra — Sanskrit for “thread”.</span>
+    <a href="https://github.com/im-anp/sutra/releases">Releases</a>
+  </footer>
+</main>
+<script>
+  document.querySelectorAll("button.copy").forEach((b) => b.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent.trim());
+      b.textContent = "copied"; setTimeout(() => (b.textContent = "copy"), 1500);
+    } catch { b.textContent = "select it"; }
+  }));
+  fetch("https://api.github.com/repos/im-anp/sutra/releases/latest")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((rel) => { if (rel && rel.tag_name) document.getElementById("version").textContent = "Latest: " + rel.tag_name + "."; })
+    .catch(() => {});
+</script>
+</body>
+</html>
