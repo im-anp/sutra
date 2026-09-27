@@ -2,10 +2,13 @@
 
 A personal second brain that runs on your own Mac.
 
-Sutra remembers what you tell it, reads your documents and email, searches and
-reads the web, works in your tools (Gmail, Calendar, Jira, Notion, Slack,
-GitHub), helps you learn things properly, and hands builds to Claude Code or
-Codex. Its memory is a folder of plain markdown you own — open it in Obsidian.
+Sutra remembers what you tell it, reads your documents, searches and reads the
+web, creates PDFs, Word docs and pitch decks, works in your tools (Jira, Notion,
+GitHub, and any local MCP server), helps you learn things properly, and hands
+builds to Claude Code or Codex. Message it from your phone over Telegram, and
+let it use your own Chrome (via the Sutra extension) for sites that block
+automation. Its memory is a folder of plain markdown you own — open it in
+Obsidian.
 
 **Website:** https://im-anp.github.io/sutra
 

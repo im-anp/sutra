@@ -297,7 +297,7 @@
           <div class="chat">
             <div class="msg-user">What did I decide about the Berlin offer? Draft a reply to Lena.</div>
             <div class="msg-ai">
-              <div class="tools"><span class="tool">memory_search</span><span class="tool">note_read · plans/job-search</span><span class="tool">gmail · get_thread</span></div>
+              <div class="tools"><span class="tool">memory_search</span><span class="tool">note_read · plans/job-search</span><span class="tool">chrome · read mail.google.com</span></div>
               <p>On Sept 12 you decided to take it if they matched the remote-first policy — see <span class="wl">[[plans/job-search]]</span>. Lena's last email confirms they do, and asks for a start date. You told me you'd prefer <b>Nov 3</b>.</p>
               <p>I've drafted a reply accepting, with Nov 3 as the start date.</p>
             </div>
@@ -306,7 +306,7 @@
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 approval needed
               </div>
-              <div class="approve-b">Save a draft reply to Lena in Gmail — it won't be sent.
+              <div class="approve-b">Type the reply to Lena in your Gmail tab — it won't be sent.
                 <div class="row"><span class="chip-btn ok">✓ Approve</span><span class="chip-btn">Decline</span></div>
               </div>
             </div>
@@ -319,7 +319,7 @@
 
   <div class="wrap strip reveal">
     <p>Works in the tools you already use</p>
-    <div class="logos"><span>Gmail</span><span>Google Calendar</span><span>Jira &amp; Confluence</span><span>Notion</span><span>Slack</span><span>GitHub</span><span>Claude Code</span><span>Codex</span></div>
+    <div class="logos"><span>Telegram</span><span>Chrome</span><span>Jira &amp; Confluence</span><span>Notion</span><span>GitHub</span><span>MCP servers</span><span>Claude Code</span><span>Codex</span></div>
   </div>
 
   <section id="features">
@@ -371,10 +371,10 @@
           </div></div>
         </div>
         <div class="tile reveal">
-          <h3>Connect with a click</h3>
-          <p>Sign in once and Sutra can search, read and draft in the tools you use.</p>
+          <h3>Connect your tools</h3>
+          <p>Sign in to Jira, Notion or GitHub with a click, or add local MCP servers the same way as in Claude Desktop.</p>
           <div class="viz"><div class="conn">
-            <span class="on">Gmail</span><span class="on">Calendar</span><span class="on">Jira</span><span>Notion</span><span>Slack</span><span class="on">GitHub</span>
+            <span class="on">Jira</span><span class="on">Notion</span><span class="on">GitHub</span><span class="on">filesystem</span><span>sqlite</span><span>your MCP</span>
           </div></div>
         </div>
         <div class="tile wide reveal">
@@ -387,12 +387,27 @@
           </div></div>
         </div>
         <div class="tile wide reveal">
-          <h3>Documents, email, images</h3>
-          <p>Drop in a resume, a prescription or a PDF — it reads and remembers them. It reads your email, and creates images and diagrams when you need them.</p>
+          <h3>Reads and writes documents</h3>
+          <p>Drop in a resume, a prescription or a PDF — it reads and remembers them. Ask for a report, a Word doc or a pitch deck and you get a real PDF, .docx or .pptx.</p>
           <div class="viz"><div class="tree">
             <b>files/</b> resume.pdf · notes.docx · receipt.jpg<br>
-            <b>artifacts/</b> cover-letter-berlin.md<br>
+            <b>documents/</b> seed-pitch.pptx · q3-report.pdf<br>
             <b>media/</b> <span class="hl">architecture-diagram.png</span>
+          </div></div>
+        </div>
+        <div class="tile wide reveal">
+          <h3>From your phone</h3>
+          <p>Pair Telegram once and message Sutra while you're out — ask, trigger tasks, approve with a tap. <code style="font:12px var(--mono)">/new</code> starts fresh.</p>
+          <div class="viz"><div class="gate">
+            <div><span>“Any update on the blog build?”</span> <em class="free">replies</em></div>
+          </div></div>
+        </div>
+        <div class="tile wide reveal">
+          <h3>Your Chrome, when needed</h3>
+          <p>Sites like Gmail block automation browsers. The Sutra extension lets it use your signed-in Chrome instead — only its own tabs, every click approved.</p>
+          <div class="viz"><div class="gate">
+            <div><span>Open Gmail in a Sutra tab</span> <em class="free">runs</em></div>
+            <div><span>Click Send</span> <em class="ask">asks you</em></div>
           </div></div>
         </div>
       </div>
