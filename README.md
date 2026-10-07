@@ -5,7 +5,9 @@ A personal second brain that runs on your own Mac.
 Sutra remembers what you tell it, reads your documents, searches and reads the
 web, creates PDFs, Word docs and pitch decks, works in your tools (Jira, Notion,
 GitHub, and any local MCP server), helps you learn things properly, and hands
-builds to Claude Code or Codex. Its everyday apps track spending, nutrition
+builds to Claude Code or Codex. It recalls the notes that matter before every
+reply, and learns how you like things done — drafting short procedures from
+your corrections that take effect only once you approve them. Its everyday apps track spending, nutrition
 and workouts (with a short video for every exercise, and a nudge when it's
 time to level up). Use it from your phone in any browser with Sutra Remote, or
 over Telegram, and let it use your own Chrome (via the Sutra extension) for
