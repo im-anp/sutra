@@ -5,9 +5,11 @@ A personal second brain that runs on your own Mac.
 Sutra remembers what you tell it, reads your documents, searches and reads the
 web, creates PDFs, Word docs and pitch decks, works in your tools (Jira, Notion,
 GitHub, and any local MCP server), helps you learn things properly, and hands
-builds to Claude Code or Codex. Message it from your phone over Telegram, and
-let it use your own Chrome (via the Sutra extension) for sites that block
-automation. Its memory is a folder of plain markdown you own — open it in
+builds to Claude Code or Codex. Its everyday apps track spending, nutrition
+and workouts (with a short video for every exercise, and a nudge when it's
+time to level up). Use it from your phone in any browser with Sutra Remote, or
+over Telegram, and let it use your own Chrome (via the Sutra extension) for
+sites that block automation. Its memory is a folder of plain markdown you own — open it in
 Obsidian.
 
 **Website:** https://im-anp.github.io/sutra
@@ -30,6 +32,8 @@ Then run `sutra`. It opens at http://localhost:3000.
 | `sutra key` | set or replace the OpenRouter key |
 | `sutra doctor` | check the install |
 | `sutra vault` | print the vault path (`--open` to reveal it) |
+| `sutra remote setup` | use Sutra from your phone — then open https://sutra-remote.vercel.app and type the code |
+| `sutra remote code` | a new pairing code (`list` / `revoke <id\|all>` / `on` / `off`) |
 | `sutra version` | what's installed |
 
 ## Privacy and safety
@@ -38,6 +42,9 @@ Then run `sutra`. It opens at http://localhost:3000.
 - No account, no sign-in: whoever uses this computer is treated as you.
 - Anything that sends, posts, buys or changes something asks you first.
 - Model calls go to OpenRouter with your own key; everything else stays local.
+- Sutra Remote is off until you set it up. Your Mac connects out to the relay
+  (nothing listens on your network); messages pass through it over HTTPS and
+  are held at most 10 minutes. `sutra remote revoke all` unpairs every browser.
 
 This repository holds the installer, the website and the release builds.
 Sutra itself is distributed as a compiled build under the MIT license
