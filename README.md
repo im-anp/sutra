@@ -14,7 +14,7 @@ over Telegram, and let it use your own Chrome (via the Sunday extension) for
 sites that block automation. Its memory is a folder of plain markdown you own — open it in
 Obsidian.
 
-**Website:** https://im-anp.github.io/sutra
+**Website:** https://sundaybot.me
 
 ## Install
 
@@ -22,7 +22,7 @@ Needs macOS on Apple Silicon, [Node 24+](https://nodejs.org), and an
 [OpenRouter key](https://openrouter.ai/keys).
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/im-anp/sutra/main/install.sh | bash
+curl -fsSL https://sundaybot.me/install.sh | bash
 ```
 
 Then run `sunday`. It opens at http://localhost:3000.
@@ -34,7 +34,7 @@ Then run `sunday`. It opens at http://localhost:3000.
 | `sunday key` | set or replace the OpenRouter key |
 | `sunday doctor` | check the install |
 | `sunday vault` | print the vault path (`--open` to reveal it) |
-| `sunday remote setup` | use Sunday from your phone — then open https://sutra-remote.vercel.app and type the code |
+| `sunday remote setup` | use Sunday from your phone — then open https://app.sundaybot.me and type the code |
 | `sunday remote code` | a new pairing code (`list` / `revoke <id\|all>` / `on` / `off`) |
 | `sunday version` | what's installed |
 
