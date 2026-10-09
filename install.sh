@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# Sutra installer.
+# Sunday installer.
 #
 #   curl -fsSL https://raw.githubusercontent.com/im-anp/sutra/main/install.sh | bash
 #
-# Downloads the latest Sutra build to ~/sutra (SUTRA_DIR overrides), installs
+# Downloads the latest Sunday build to ~/sutra (SUTRA_DIR overrides), installs
 # its dependencies, asks for your OpenRouter key and vault folder, and puts
-# `sutra` on your PATH. Re-running it updates an existing install.
+# `sunday` on your PATH. Re-running it updates an existing install.
 
 # Everything is inside main(), called on the last line, so a download cut off
 # halfway through runs nothing instead of half a script.
@@ -30,18 +30,18 @@ printf '\n  %s%ssutra%s %s— your second brain%s\n\n' "$GREEN" "$BOLD" "$OFF" "
 # ── Platform and Node ───────────────────────────────────────────────────────
 step "Checking this machine"
 if [ "$(uname -s)" != "Darwin" ] || [ "$(uname -m)" != "arm64" ]; then
-  warn "Sutra currently ships for macOS on Apple Silicon (M1 or newer)."
+  warn "Sunday currently ships for macOS on Apple Silicon (M1 or newer)."
   say "This machine is $(uname -s) $(uname -m)."
   exit 1
 fi
 if ! command -v node >/dev/null 2>&1; then
-  warn "Node is not installed. Sutra needs Node 24 or newer."
+  warn "Node is not installed. Sunday needs Node 24 or newer."
   say "  brew install node      — or download it from https://nodejs.org"
   exit 1
 fi
 NODE_MAJOR="$(node -p 'process.versions.node.split(".")[0]')"
 if [ "$NODE_MAJOR" -lt 24 ]; then
-  warn "Node $(node -v) found; Sutra needs 24 or newer."
+  warn "Node $(node -v) found; Sunday needs 24 or newer."
   say "  brew upgrade node      — or nvm install 24"
   exit 1
 fi
@@ -54,17 +54,17 @@ if [ -d "$APP/.git" ]; then
   exit 1
 fi
 if [ -f "$APP/VERSION" ] && [ -f "$APP/cli/sutra.mjs" ]; then
-  step "Sutra is already installed — updating"
+  step "Sunday is already installed — updating"
   node "$APP/cli/sutra.mjs" update
   exit 0
 fi
 if [ -e "$APP" ] && [ -n "$(ls -A "$APP" 2>/dev/null)" ]; then
-  warn "$APP already exists and isn't a Sutra install. Move it, or set SUTRA_DIR."
+  warn "$APP already exists and isn't a Sunday install. Move it, or set SUTRA_DIR."
   exit 1
 fi
 
 # ── Download ────────────────────────────────────────────────────────────────
-step "Downloading Sutra"
+step "Downloading Sunday"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 URL="$(node -e '
@@ -76,14 +76,14 @@ URL="$(node -e '
       console.log(a.browser_download_url);
     })
     .catch((e) => { console.error(e.message); process.exit(1); });
-' "$RELEASES_REPO")" || { warn "Couldn't find a Sutra release to download."; exit 1; }
+' "$RELEASES_REPO")" || { warn "Couldn't find a Sunday release to download."; exit 1; }
 curl -fsSL "$URL" -o "$TMP/sutra.tar.gz"
 tar -xzf "$TMP/sutra.tar.gz" -C "$TMP"
 mkdir -p "$(dirname "$APP")"
 rm -rf "$APP"
 mv "$TMP/sutra" "$APP"
 cd "$APP"
-ok "Sutra $(cat VERSION) → $APP"
+ok "Sunday $(cat VERSION) → $APP"
 
 # ── Dependencies ────────────────────────────────────────────────────────────
 step "Installing dependencies"
@@ -96,13 +96,13 @@ touch .env.local
 chmod 600 .env.local
 
 step "Model access"
-say "Sutra runs on OpenRouter — one key, every model."
+say "Sunday runs on OpenRouter — one key, every model."
 say "${DIM}Get one at https://openrouter.ai/keys${OFF}"
 printf '\n  Paste your OpenRouter key: '
 read -r -s OPENROUTER_KEY < "$TTY" || OPENROUTER_KEY=""   # -s: the key never lands in scrollback
 printf '\n'
 if [ -z "$OPENROUTER_KEY" ]; then
-  warn "No key given — set it later with: sutra key"
+  warn "No key given — set it later with: sunday key"
 else
   printf 'OPENROUTER_API_KEY=%s\n' "$OPENROUTER_KEY" >> .env.local
   ok "Key saved to $APP/.env.local (readable only by you)"
@@ -119,8 +119,8 @@ mkdir -p "$VAULT"
 printf 'SUTRA_VAULT=%s\n' "$VAULT" >> .env.local
 ok "Vault ready at $VAULT"
 
-# ── The `sutra` command ─────────────────────────────────────────────────────
-step "Installing the sutra command"
+# ── The `sunday` command ─────────────────────────────────────────────────────
+step "Installing the sunday command"
 chmod +x "$APP/cli/sutra.mjs"
 BIN_DIR=""
 for candidate in "$HOME/.local/bin" "/usr/local/bin" "$HOME/bin"; do
@@ -130,24 +130,25 @@ if [ -z "$BIN_DIR" ]; then
   BIN_DIR="$HOME/.local/bin"
   mkdir -p "$BIN_DIR"
 fi
-ln -sf "$APP/cli/sutra.mjs" "$BIN_DIR/sutra"
-ok "sutra → $BIN_DIR/sutra"
+ln -sf "$APP/cli/sutra.mjs" "$BIN_DIR/sunday"
+ln -sf "$APP/cli/sutra.mjs" "$BIN_DIR/sutra"   # the old name keeps working
+ok "sunday → $BIN_DIR/sunday"
 
-printf '\n  %s%sSutra is ready.%s\n\n' "$GREEN" "$BOLD" "$OFF"
+printf '\n  %s%sSunday is ready.%s\n\n' "$GREEN" "$BOLD" "$OFF"
 case ":$PATH:" in
-  *":$BIN_DIR:"*) say "Start it:    ${BOLD}sutra${OFF}" ;;
+  *":$BIN_DIR:"*) say "Start it:    ${BOLD}sunday${OFF}" ;;
   *)
     warn "$BIN_DIR is not on your PATH yet. Add this to ~/.zshrc:"
     say ""
     say "    ${BOLD}export PATH=\"$BIN_DIR:\$PATH\"${OFF}"
     say ""
-    say "Then: ${BOLD}sutra${OFF}   (or run it now as ${BOLD}$BIN_DIR/sutra${OFF})"
+    say "Then: ${BOLD}sunday${OFF}   (or run it now as ${BOLD}$BIN_DIR/sunday${OFF})"
     ;;
 esac
 say ""
-say "  ${BOLD}sutra${OFF}          start, and open the browser"
-say "  ${BOLD}sutra update${OFF}   move to the latest version"
-say "  ${BOLD}sutra doctor${OFF}   check the install"
+say "  ${BOLD}sunday${OFF}          start, and open the browser"
+say "  ${BOLD}sunday update${OFF}   move to the latest version"
+say "  ${BOLD}sunday doctor${OFF}   check the install"
 say ""
 say "${DIM}Runs entirely on this machine and only answers this machine."
 say "No account, no sign-in: whoever uses this computer is treated as you.${OFF}"
