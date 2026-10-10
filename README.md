@@ -36,6 +36,7 @@ Then run `sunday`. It opens at http://localhost:3000.
 | `sunday vault` | print the vault path (`--open` to reveal it) |
 | `sunday remote setup` | use Sunday from your phone — then open https://app.sundaybot.me and type the code |
 | `sunday remote code` | a new pairing code (`list` / `revoke <id\|all>` / `on` / `off`) |
+| `sunday remote awake off` | let the Mac sleep as usual (by default, while Remote is on, Sunday keeps it awake — lid open) |
 | `sunday version` | what's installed |
 
 ## Privacy and safety
