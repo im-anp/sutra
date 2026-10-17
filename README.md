@@ -18,8 +18,10 @@ Obsidian.
 
 ## Install
 
-Needs macOS on Apple Silicon, [Node 24+](https://nodejs.org), and an
-[OpenRouter key](https://openrouter.ai/keys).
+Needs macOS on Apple Silicon and [Node 24+](https://nodejs.org). The app is
+free and open source. For the AI, log in with a
+[Sunday plan](https://sundaybot.me/#pricing) (from ₹799/month, nothing to set
+up) or use your own [OpenRouter key](https://openrouter.ai/keys).
 
 ```bash
 curl -fsSL https://sundaybot.me/install.sh | bash
@@ -31,7 +33,7 @@ Then run `sunday`. It opens at http://localhost:3000.
 |---|---|
 | `sunday` | start it and open the browser |
 | `sunday update` | move to the latest version |
-| `sunday key` | set or replace the OpenRouter key |
+| `sunday key` | use your own OpenRouter key instead of a plan (Enter removes it) |
 | `sunday doctor` | check the install |
 | `sunday vault` | print the vault path (`--open` to reveal it) |
 | `sunday remote setup` | use Sunday from your phone — then open https://app.sundaybot.me and type the code |
@@ -42,9 +44,11 @@ Then run `sunday`. It opens at http://localhost:3000.
 ## Privacy and safety
 
 - Runs entirely on your machine and only listens on `localhost`.
-- No account, no sign-in: whoever uses this computer is treated as you.
+- No sign-in to the app: whoever uses this computer is treated as you. A Sunday
+  account (optional) only holds your plan — no chats or files.
 - Anything that sends, posts, buys or changes something asks you first.
-- Model calls go to OpenRouter with your own key; everything else stays local.
+- Model calls go to OpenRouter — through your Sunday plan or your own key;
+  everything else stays local.
 - Sunday Remote is off until you set it up. Your Mac connects out to the relay
   (nothing listens on your network); messages pass through it over HTTPS and
   are held at most 10 minutes. `sunday remote revoke all` unpairs every browser.

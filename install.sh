@@ -5,8 +5,9 @@
 #   curl -fsSL https://sundaybot.me/install.sh | bash
 #
 # Downloads the latest Sunday build to ~/sutra (SUTRA_DIR overrides), installs
-# its dependencies, asks for your OpenRouter key and vault folder, and puts
-# `sunday` on your PATH. Re-running it updates an existing install.
+# its dependencies, asks how Sunday gets its AI (a Sunday plan or your own
+# OpenRouter key) and the vault folder, and puts `sunday` on your PATH.
+# Re-running it updates an existing install.
 
 # Everything is inside main(), called on the last line, so a download cut off
 # halfway through runs nothing instead of half a script.
@@ -91,21 +92,30 @@ say "${DIM}A minute or two — it includes a local embedding model runtime.${OFF
 npm ci --omit=dev --no-audit --no-fund --loglevel=error
 ok "Dependencies installed"
 
-# ── Key and vault ───────────────────────────────────────────────────────────
+# ── AI access and vault ───────────────────────────────────────────────────────────
 touch .env.local
 chmod 600 .env.local
 
-step "Model access"
-say "Sunday runs on OpenRouter — one key, every model."
-say "${DIM}Get one at https://openrouter.ai/keys${OFF}"
-printf '\n  Paste your OpenRouter key: '
-read -r -s OPENROUTER_KEY < "$TTY" || OPENROUTER_KEY=""   # -s: the key never lands in scrollback
-printf '\n'
-if [ -z "$OPENROUTER_KEY" ]; then
-  warn "No key given — set it later with: sunday key"
+step "AI access"
+say "How should Sunday get its AI?"
+say "  ${BOLD}1${OFF}  Sunday plan ${DIM}— log in, nothing to set up (plans from ₹799/month)${OFF}"
+say "  ${BOLD}2${OFF}  My own OpenRouter key ${DIM}— pay OpenRouter directly${OFF}"
+printf '\n  Choose [1]: '
+read -r AI_CHOICE < "$TTY" || AI_CHOICE=""
+if [ "${AI_CHOICE:-1}" = "2" ]; then
+  say "${DIM}Get one at https://openrouter.ai/keys${OFF}"
+  printf '  Paste your OpenRouter key: '
+  read -r -s OPENROUTER_KEY < "$TTY" || OPENROUTER_KEY=""   # -s: the key never lands in scrollback
+  printf '\n'
+  if [ -z "$OPENROUTER_KEY" ]; then
+    warn "No key given — log in with a plan in Settings, or set a key later with: sunday key"
+  else
+    printf 'OPENROUTER_API_KEY=%s\n' "$OPENROUTER_KEY" >> .env.local
+    ok "Key saved to $APP/.env.local (readable only by you)"
+  fi
 else
-  printf 'OPENROUTER_API_KEY=%s\n' "$OPENROUTER_KEY" >> .env.local
-  ok "Key saved to $APP/.env.local (readable only by you)"
+  printf 'SUNDAY_AI=plan\n' >> .env.local
+  ok "Sunday plan — you'll log in in the browser when Sunday first opens"
 fi
 
 step "Your vault"
