@@ -16,30 +16,24 @@ Obsidian.
 
 **Website:** https://sundaybot.me
 
+> **Beta:** Sunday is in public beta — features change and things can break.
+> Keep backups of anything important. Using it means you agree to the
+> [Terms](https://platform.sundaybot.me/terms) and
+> [Privacy Policy](https://platform.sundaybot.me/privacy).
+
 ## Install
 
-Needs macOS on Apple Silicon and [Node 24+](https://nodejs.org). The app is
-free and open source. For the AI, log in with a
+Download **[Sunday.dmg](https://github.com/im-anp/sutra/releases/latest/download/Sunday.dmg)**
+(macOS on Apple Silicon), open it and drag Sunday into Applications. It's
+signed and notarized by Apple, brings everything it needs, lives in the menu
+bar and updates itself.
+
+The app is free and open source. For the AI, log in with a
 [Sunday plan](https://sundaybot.me/#pricing) (from ₹799/month, nothing to set
 up) or use your own [OpenRouter key](https://openrouter.ai/keys).
 
-```bash
-curl -fsSL https://sundaybot.me/install.sh | bash
-```
-
-Then run `sunday`. It opens at http://localhost:3000.
-
-| command | |
-|---|---|
-| `sunday` | start it and open the browser |
-| `sunday update` | move to the latest version |
-| `sunday key` | use your own OpenRouter key instead of a plan (Enter removes it) |
-| `sunday doctor` | check the install |
-| `sunday vault` | print the vault path (`--open` to reveal it) |
-| `sunday remote setup` | use Sunday from your phone — then open https://app.sundaybot.me and type the code |
-| `sunday remote code` | a new pairing code (`list` / `revoke <id\|all>` / `on` / `off`) |
-| `sunday remote awake off` | let the Mac sleep as usual (by default, while Remote is on, Sunday keeps it awake — lid open) |
-| `sunday version` | what's installed |
+To use Sunday from your phone, open Settings › Remote in the app, then go to
+https://app.sundaybot.me and type the code.
 
 ## Privacy and safety
 
@@ -51,8 +45,8 @@ Then run `sunday`. It opens at http://localhost:3000.
   everything else stays local.
 - Sunday Remote is off until you set it up. Your Mac connects out to the relay
   (nothing listens on your network); messages pass through it over HTTPS and
-  are held at most 10 minutes. `sunday remote revoke all` unpairs every browser.
+  are held at most 10 minutes. Settings › Remote unpairs any phone or browser.
 
-This repository holds the installer, the website and the release builds.
+This repository holds the website and the release builds.
 Sunday itself is distributed as a compiled build under the MIT license
 (see [LICENSE](LICENSE)).
