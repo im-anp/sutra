@@ -24,7 +24,8 @@ Obsidian.
 ## Install
 
 Download **[Sunday.dmg](https://github.com/im-anp/sutra/releases/latest/download/Sunday.dmg)**
-(macOS on Apple Silicon), open it and drag Sunday into Applications. It's
+for Apple Silicon Macs (M1 or newer) or **[Sunday-Intel.dmg](https://github.com/im-anp/sutra/releases/latest/download/Sunday-Intel.dmg)** for
+Intel Macs (macOS 12 or newer), open it and drag Sunday into Applications. It's
 signed and notarized by Apple, brings everything it needs, lives in the menu
 bar and updates itself.
 
